@@ -1,0 +1,161 @@
+import { StyleSheet } from "react-native";
+
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: 10,
+  },
+  backArrow: {
+    color: "#429EEE",
+    marginBottom: 5,
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
+  title: {
+    fontFamily: "Poppins_600SemiBold",
+    fontSize: 21,
+  },
+  info: {
+    color: "#429EEE",
+  },
+  address: {
+    fontFamily: "Poppins_400Regular",
+    fontSize: 12,
+    marginBottom: 3,
+  },
+  menuTabs: {
+    flexDirection: "row",
+    gap: 10,
+    alignItems: "center",
+    marginBottom: 10,
+    height: 38,
+  },
+  separator: {
+    height: "50%",
+    width: 1,
+    backgroundColor: "#ccc",
+  },
+  menuItem: {
+    fontFamily: "Poppins_400Regular",
+    fontSize: 12,
+    color: "#DCDCDC",
+  },
+  activeMenuItem: {
+    color: "#429EEE",
+  },
+  foodContainer: {
+    height: 97,
+    flexDirection: "row",
+    marginBottom: 15,
+    gap: 15,
+  },
+  foodImg: {
+    height: "100%",
+    width: 106,
+    resizeMode: "cover",
+  },
+  foodDetails: {
+    justifyContent: "center",
+    gap: 5,
+  },
+  detailsTxt: {
+    fontFamily: "Poppins_400Regular",
+    fontSize: 16,
+  },
+  overlay: {
+    flex: 1,
+  },
+  banner: {
+    backgroundColor: "#BEDCF9",
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingBottom:30,
+    // marginBottom: 0,
+    paddingTop: 20,
+  },
+  bannerImg: {
+    width: "100%",
+    height: 240,
+    resizeMode: "cover",
+    marginBottom: 10,
+  },
+  bannerName: {
+    fontFamily: "Poppins_600SemiBold",
+    fontSize: 21,
+    marginBottom: 5,
+    textAlign: "left",
+    paddingLeft: 10,
+  },
+  bannerPrice: {
+    fontFamily: "Poppins_400Regular",
+    fontSize: 16,
+    marginBottom: 15,
+    paddingLeft: 10,
+  },
+  purchaseContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  quantityContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 20,
+    marginBottom: 20,
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 10,
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#429EEE",
+  },
+  quantityTxt: {
+    fontSize: 18,
+    fontFamily: "Poppins_500Medium",
+  },
+  addButton: {
+    backgroundColor: "#429EEE",
+    paddingVertical: 10,
+    paddingHorizontal: 40,
+    borderRadius: 10,
+    height: 50,
+    justifyContent: "center",
+  },
+  addButtonTxt: {
+    color: "#fff",
+    fontFamily: "Poppins_500Medium",
+    fontSize: 21,
+  },
+  ruler: {
+    height: 6.15,
+    width: 90,
+    backgroundColor: "#429EEE",
+    borderRadius: 10,
+    marginHorizontal: "auto",
+    marginBottom: 15,
+  },
+  checkoutButton: {
+    position: "absolute",
+    bottom: 45,
+    left: 20,
+    right: 20,
+    backgroundColor: "#429EEE",
+    paddingVertical: 15,
+    borderRadius: 12,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  checkoutText: {
+    color: "#fff",
+    fontSize: 16,
+    fontFamily: "Poppins_500Medium",
+  },
+});
