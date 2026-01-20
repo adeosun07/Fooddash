@@ -4,7 +4,7 @@ import { Text, View, ImageBackground, Image, TouchableOpacity } from 'react-nati
 import styles from "../tabStyles/_supportStyles";
 
 function Profile(props) {
-  const profileBg = require("../assets/Wave.png");
+  const profileBg = require("../../assets/Wave.png");
 
   return (
     <SafeAreaView edges={[]} style={styles.container}>

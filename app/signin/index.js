@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -15,15 +15,14 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./signinStyle";
 import { useRouter } from "expo-router";
-import { API_URL} from "@env";
-import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loading from "../loading";
 
 function index(props) {
-    
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleReturn = () => {
         router.replace("/onboarding");
@@ -34,32 +33,35 @@ function index(props) {
     }
 
     const handleForgotPassword = async () => {
-      const result = await axios.post(`https://api-foodash.khostels.com.ng/students/auth/request_otp`, {
-        email
-      })
-      if(result.data.status === "success"){
-        const info = result.data.message;
-        Alert.alert(`${info}`);
-        router.push({
-  pathname: "/signin/ForgotPassword",
-  params: { email },
-});
-
+      if (!email) {
+        Alert.alert("Error", "Please enter your email");
+        return;
       }
+      setLoading(true);
+      // Dummy delay to simulate API call
+      setTimeout(() => {
+        setLoading(false);
+        Alert.alert("Success", "OTP sent to your email");
+        router.push({
+          pathname: "/signin/ForgotPassword",
+          params: { email },
+        });
+      }, 2000);
     }
 
     const handleSignin = async () => {
-      const result = await axios.post(`https://api-foodash.khostels.com.ng/students/auth/login`, {
-        email,
-        password
-      });
-
-      if (result.data.status === "success"){
-        await AsyncStorage.setItem("isSignedIn", "true");
-        const info = result.data.message;
-        Alert.alert(`${info}`);
-        router.replace("/home")
+      if (!email || !password) {
+        Alert.alert("Error", "Please enter email and password");
+        return;
       }
+      setLoading(true);
+      setTimeout(async () => {
+        setLoading(false);
+        await AsyncStorage.setItem("isSignedIn", "true");
+        await AsyncStorage.setItem("authToken", "dummy_token_" + Date.now());
+        Alert.alert("Success", "Signed in successfully!");
+        router.replace("/(customer)");
+      }, 2000);
     }
 
   return (
@@ -106,13 +108,14 @@ function index(props) {
           <View style={styles.dashLine} />
         </View>
         <View style={styles.iconsContainer}>
-          <Image source={require("../assets/apple.png")} />
-          <Image source={require("../assets/google.png")} />
+          <Image source={require("../../assets/apple.png")} />
+          <Image source={require("../../assets/google.png")} />
         </View>
       </View>
       <Text style={styles.signUpContainer}>
         Don't have an account? <Text style={styles.signUpText} onPress={()=>handleToSignup()}>Sign up</Text>
       </Text>
+      <Loading visible={loading} />
     </SafeAreaView>
   );
 }

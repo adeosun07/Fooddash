@@ -11,7 +11,7 @@ import { useFonts,
   Poppins_800ExtraBold,
   Poppins_900Black
 } from "@expo-google-fonts/poppins";
-import SplashText from "./components/SplashText";
+import SplashText from "../components/SplashText";
 import { StyleSheet, View, Image } from "react-native";
 
 export default function Layout() {
@@ -31,7 +31,7 @@ export default function Layout() {
    <View style={styles.secondSplash}>
           <View style={styles.splashContainer}>
             <Image
-              source={require("./assets/Logo.png")}
+              source={require("../assets/Logo.png")}
               style={styles.SplashLogo}
             />
             <SplashText />

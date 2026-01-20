@@ -395,7 +395,7 @@ export default function Checkout() {
                 onPress={() => setPaymentType("transfer")}
               >
                 <Image
-                  source={require("../assets/transfer.png")}
+                  source={require("../../assets/transfer.png")}
                   style={styles.paymentImg}
                 />
                 <Text>Transfer</Text>
@@ -406,7 +406,7 @@ export default function Checkout() {
                 onPress={() => setPaymentType("ussd")}
               >
                 <Image
-                  source={require("../assets/ussd.png")}
+                  source={require("../../assets/ussd.png")}
                   style={styles.paymentImg}
                 />
                 <Text>USSD</Text>
@@ -417,7 +417,7 @@ export default function Checkout() {
                 onPress={() => setPaymentType("card")}
               >
                 <Image
-                  source={require("../assets/card.png")}
+                  source={require("../../assets/card.png")}
                   style={styles.paymentImg}
                 />
                 <Text>Card</Text>

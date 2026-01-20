@@ -11,7 +11,7 @@ export default function Cart() {
   const orders = [
     {
       id: "1",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -19,7 +19,7 @@ export default function Cart() {
     },
     {
       id: "2",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -27,7 +27,7 @@ export default function Cart() {
     },
     {
       id: "3",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -35,7 +35,7 @@ export default function Cart() {
     },
     {
       id: "4",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -43,7 +43,7 @@ export default function Cart() {
     },
     {
       id: "5",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -51,7 +51,7 @@ export default function Cart() {
     },
     {
       id: "6",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -59,7 +59,7 @@ export default function Cart() {
     },
     {
       id: "7",
-      restaurantImg: require("../assets/cuishy_cuisine.png"),
+      restaurantImg: require("../../assets/cuishy_cuisine.png"),
       quantity: 4,
       price: 1500,
       restaurantName: "Cuishy Cuisine",
@@ -168,7 +168,7 @@ export default function Cart() {
           ) : (
             <View style={styles.emptyCart}>
               <Image
-                source={require("../assets/cart.png")}
+                source={require("../../assets/cart.png")}
                 style={styles.cartImage}
               />
               <Text style={styles.emptyText}>Your Cart is Empty</Text>
@@ -193,7 +193,7 @@ export default function Cart() {
           ) : (
             <View style={styles.emptyCart}>
               <Image
-                source={require("../assets/ongoing.png")}
+                source={require("../../assets/ongoing.png")}
                 style={styles.cartImage}
               />
               <Text style={styles.emptyText}>Nothing is going on</Text>

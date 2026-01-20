@@ -14,13 +14,13 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./forgotPasswordStyle";
 import { useRouter } from "expo-router";
-import axios from "axios";
-import { API_URL } from "@env";
 import { useLocalSearchParams } from "expo-router";
+import Loading from "../loading";
 
 
 function ForgotPassword() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   // refs for input navigation
   const input1Ref = useRef();
@@ -46,34 +46,27 @@ function ForgotPassword() {
       return;
     }
 
-    try {
-      console.log("Verifying OTP:", otp);
-      const result = await axios.post(`https://api-foodash.khostels.com.ng/students/auth/submit_otp`, {
-        email,
-        otp
-      })
-      if (result.data.status === "success"){
-        const info = result.data.message;
-        Alert.alert(`${info}`);
-      }
-    } catch (err) {
-      console.log("Verification error:", err.response?.data || err.message);
-      Alert.alert("Error", "Verification failed. Try again.");
-    }
+    setLoading(true);
+    // Dummy delay to simulate API call
+    setTimeout(() => {
+      setLoading(false);
+      Alert.alert("Success", "Password reset successfully!");
+      router.replace("/signin");
+    }, 2000);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={handleReturn}>
         <Image
-          source={require("../assets/arrow_back.png")}
+          source={require("../../assets/arrow_back.png")}
           style={styles.image}
         />
       </TouchableOpacity>
 
       <Text style={styles.title}>Forgot Password?</Text>
       <Text style={styles.paragraph}>We have sent a code to your email</Text>
-      <Text style={styles.paragraph}>example@gmail.com</Text>
+      <Text style={styles.paragraph}>{email ?? "example@gmail.com"}</Text>
 
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -141,6 +134,7 @@ function ForgotPassword() {
           </View>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
+      <Loading visible={loading} />
     </SafeAreaView>
   );
 }

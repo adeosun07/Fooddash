@@ -16,31 +16,31 @@ import { Link } from "expo-router";
 const restaurants = [
   {
     id: 1,
-    img: require("../assets/cuishy_cuisine.png"),
+    img: require("../../assets/cuishy_cuisine.png"),
     restaurantName: "Cuishy Cuisine",
     restaurantStatus: "open",
   },
   {
     id: 2,
-    img: require("../assets/glovana.png"),
+    img: require("../../assets/glovana.png"),
     restaurantName: "Glovanna Treats",
     restaurantStatus: "open",
   },
   {
     id: 3,
-    img: require("../assets/boss_grills.png"),
+    img: require("../../assets/boss_grills.png"),
     restaurantName: "Boss Grills",
     restaurantStatus: "open",
   },
   {
     id: 4,
-    img: require("../assets/banwill.png"),
+    img: require("../../assets/banwill.png"),
     restaurantName: "Mr Banwill Cuisine",
     restaurantStatus: "open",
   },
   {
     id: 5,
-    img: require("../assets/orente_grills.png"),
+    img: require("../../assets/orente_grills.png"),
     restaurantName: "Orente Foods",
     restaurantStatus: "open",
   },
@@ -61,7 +61,7 @@ function Index() {
           <Text style={styles.deliveryLocation}>Moremi Hostel, OAU</Text>
         </View>
         <Image
-          source={require("../assets/Vector.png")}
+          source={require("../../assets/Vector.png")}
           style={styles.settings}
         />
       </View>

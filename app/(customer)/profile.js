@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 function Profile(props) {
-  const profileBg = require("../assets/Wave.png");
+  const profileBg = require("../../assets/Wave.png");
 
   return (
     <SafeAreaView edges={[]} style={styles.container}>
@@ -16,13 +16,13 @@ function Profile(props) {
         style={styles.profileBg}
       >
         <View style={styles.profile}>
-          <Image source={require("../assets/profilePicture.png")} style={styles.userImg}/>
+          <Image source={require("../../assets/profilePicture.png")} style={styles.userImg}/>
           <View>
             <Text style={styles.user}>Tori</Text>
             <Text style={styles.userId}>ID: 0001</Text>
           </View>
         </View>
-        <Image source={require("../assets/edits.png")} />
+        <Image source={require("../../assets/edits.png")} />
       </ImageBackground>
       <View style={styles.itemList}>
         <TouchableOpacity style={styles.itemContainer}>

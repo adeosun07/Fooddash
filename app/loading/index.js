@@ -36,7 +36,7 @@ export default function Loading({ visible }) {
     <Modal visible={visible} transparent>
       <View style={styles.container}>
         <Animated.Image
-          source={require("../assets/Logo.png")} // 👈 your logo image
+          source={require("../../assets/Logo.png")} // 👈 your logo image
           style={[styles.logo, { transform: [{ scale: scaleAnim }] }]}
           resizeMode="contain"
         />

@@ -2,7 +2,7 @@ import { Redirect } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import SplashText from "./components/SplashText";
+import SplashText from "../components/SplashText";
 
 
 export default function Index() {
@@ -27,7 +27,7 @@ export default function Index() {
         <View style={styles.secondSplash}>
           <View style={styles.splashContainer}>
             <Image
-              source={require("./assets/Logo.png")}
+              source={require("../assets/Logo.png")}
               style={styles.SplashLogo}
             />
             <SplashText />

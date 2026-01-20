@@ -15,8 +15,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "./signupStyle";
 import { useRouter } from "expo-router";
-import axios from "axios";
-import { API_URL } from "@env";
 import Loading from "../loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -37,43 +35,19 @@ function index(props) {
     if (password !== confirmPassword) {
       Alert.alert("Password must match");
       return;
+    } else if (!name || !email || !password) {
+      Alert.alert("Error", "Please fill in all fields");
+      return;
     } else {
       setLoading(true);
-      console.log({
-        name: name.trim(),
-        email: email.trim(),
-        password,
-        password_confirm: confirmPassword,
-      });
-      try {
-        const result = await axios.post(`${API_URL}/auth/register`, {
-          name: name.trim(),
-          email: email.trim(),
-          password,
-          password_confirm: confirmPassword,
-        });
-        console.log(result.data);
-        if (result.data.status === "success") {
-          await AsyncStorage.setItem("hasOnboarded", "true");
-          const info = result.data.message;
-          Alert.alert(`${info}`);
-          router.replace("/signin");
-        } else {
-          console.log("Signup err", result.data.message);
-          Alert.alert(
-            "Error",
-            result.data.errors?.join("\n") || "Registration unsuccessful"
-          );
-        }
-      } catch (error) {
-        console.log("Signup error:", error.response?.data || error.message);
-        Alert.alert(
-          "Signup failed",
-          "Please check your details and try again."
-        );
-      } finally {
+      // Dummy delay to simulate API call
+      setTimeout(async () => {
+        await AsyncStorage.setItem("hasOnboarded", "true");
+        await AsyncStorage.setItem("authToken", "dummy_token_" + Date.now());
         setLoading(false);
-      }
+        Alert.alert("Success", "Account created successfully!\nPlease sign in");
+        router.replace("/signin");
+      }, 2000);
     }
   };
 
@@ -81,7 +55,7 @@ function index(props) {
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={() => handleReturn()}>
         <Image
-          source={require("../assets/arrow_back.png")}
+          source={require("../../assets/arrow_back.png")}
           style={styles.image}
         />
       </TouchableOpacity>
@@ -139,8 +113,8 @@ function index(props) {
           <View style={styles.dashLine} />
         </View>
         <View style={styles.iconsContainer}>
-          <Image source={require("../assets/apple.png")} />
-          <Image source={require("../assets/google.png")} />
+          <Image source={require("../../assets/apple.png")} />
+          <Image source={require("../../assets/google.png")} />
         </View>
       </View>
       <Text style={styles.signUpContainer}>
