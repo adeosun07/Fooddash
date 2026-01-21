@@ -1,41 +1,90 @@
-import { Tabs } from "expo-router";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import React from 'react';
+import { Tabs } from 'expo-router';
+import { View, StyleSheet } from 'react-native';
+import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function Layout() {
+export default function CustomerLayout() {
   return (
     <Tabs
-      screenOptions={({ route }) => ({
+      screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          height: 75, 
-          paddingTop: 0,
-          paddingBottom: 20
-        },
-        tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "home") {
-            return <Ionicons name="home" size={20} color={color} />;
-          } else if (route.name === "profile") {
-            return <Ionicons name="person" size={20} color={color} />;
-          } else if (route.name === "cart") {
-            return <Ionicons name="cart" size={20} color={color} />;
-          } else if (route.name === "search") {
-            return <Ionicons name="search" size={20} color={color} />;
-          } else if (route.name === "support") {
-            return (
-              <MaterialCommunityIcons name="headset" size={20} color={color} />
-            );
-          }
-        },
-        tabBarActiveTintColor: "#1E88E5",
-        tabBarInactiveTintColor: "#7C7C7C",
-      })}
+        tabBarActiveTintColor: '#4A90E2', // Blue from design
+        tabBarInactiveTintColor: '#A0A0A0', // Gray from design
+        tabBarStyle: styles.tabBar,
+        tabBarLabelStyle: styles.label,
+      }}
     >
-      <Tabs.Screen name="home" />
-      <Tabs.Screen name="search" />
-      <Tabs.Screen name="cart" />
-      <Tabs.Screen name="support" />
-      <Tabs.Screen name="profile" />
+      {/* 1. For You (Home) */}
+      <Tabs.Screen
+        name="home"
+        options={{
+          title: 'For You',
+          tabBarIcon: ({ color }) => (
+              <Ionicons 
+                name= "home-outline"
+                size={22} 
+                color= {color}
+              />
+          ),
+        }}
+      />
+
+      {/* 2. Search */}
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: 'Search',
+          tabBarIcon: ({ color }) => (
+            <Feather name="search" size={22} color={color} />
+          ),
+        }}
+      />
+
+      {/* 3. Orders */}
+      <Tabs.Screen
+        name="orders"
+        options={{
+          title: 'Orders',
+          tabBarIcon: ({ color }) => (
+            <Feather name="shopping-bag" size={22} color={color} />
+          ),
+        }}
+      />
+
+      {/* 4. Profile */}
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => (
+            <Feather name="user" size={22} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    height: 85,
+    paddingBottom: 25,
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#F2F2F2',
+    backgroundColor: '#FFF',
+  },
+  label: {
+    fontSize: 11,
+    fontWeight: '600',
+  },
+  activeIconContainer: {
+    backgroundColor: '#4A90E2', // The blue circle in the design
+    width: 45,
+    height: 45,
+    borderRadius: 22.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 5, // Lifts the icon slightly
+  },
+});

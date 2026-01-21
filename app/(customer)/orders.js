@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function search() {
+export default function orders() {
   return (
     <View>
-      <Text>search</Text>
+      <Text>orders</Text>
     </View>
   )
 }

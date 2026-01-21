@@ -1,68 +1,40 @@
-import { Redirect } from "expo-router";
+import { Redirect, useRootNavigationState } from "expo-router";
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import SplashText from "../components/SplashText";
-
+import { useAuth } from "../contexts/authContext";
+import SplashScreen from "./splashScreen";
 
 export default function Index() {
-  const [loading, setLoading] = useState(true);
-  const [hasOnboarded, setHasOnboarded] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const { isLoading, isLoggedIn, role } = useAuth();
+  const [hasOnboarded, setHasOnboarded] = useState(null);
+  const navigationState = useRootNavigationState();
 
- /*  useEffect(() => {
-    const checkStatus = async () => {
-      const onboarded = await AsyncStorage.getItem("hasOnboarded");
-      const token = await AsyncStorage.getItem("authToken");
-      setHasOnboarded(!!onboarded);
-      setIsSignedIn(!!token);
-
-      setTimeout(() => setLoading(false), 2000);
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      const value = await AsyncStorage.getItem("has_onboarded");
+      setHasOnboarded(value === "true");
     };
 
-    checkStatus();
-  }, []); */
+    checkOnboarding();
+  }, []);
 
-/*   if (loading) return (
-        <View style={styles.secondSplash}>
-          <View style={styles.splashContainer}>
-            <Image
-              source={require("../assets/Logo.png")}
-              style={styles.SplashLogo}
-            />
-            <SplashText />
-          </View>
-        </View>
-      ); 
- */
+  if (!navigationState?.key || isLoading || hasOnboarded === null) {
+    return <SplashScreen />;
+  }
+
   if (!hasOnboarded) {
-    return <Redirect href="/onboarding" />;
+    return <Redirect href="/onboarding/index" />;
   }
 
-  if (!isSignedIn && hasOnboarded) {
-    return <Redirect href="/success" />;
+  if (!isLoggedIn) {
+    return <Redirect href="/(auth)/login" />;
   }
 
-  return <Redirect href="/(customer)" />; 
+  // Logged in → customer redirect
+  if (role === "customer") {
+    return <Redirect href="/(customer)/home" />;
+  }
+
+  // Default redirect to auth
+  return <Redirect href="/(auth)/login" />;
 }
-
-const styles = StyleSheet.create({
-    secondSplash: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f0f7ff",
-  },
-  SplashLogo: {
-    width: 50,
-    height: 60,
-    resizeMode: "contain",
-  },
-  splashContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    width: "100%",
-    justifyContent: "center",
-  }
-});

@@ -5,24 +5,18 @@
     "scheme": "fooddash",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/Logo.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./app/assets/Logo.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#f0f7ff"
-    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./app/assets/Logo.png",
-        "backgroundColor": "#f0f7ff"
-      },
-      "edgeToEdgeEnabled": true
-    },
-    "plugins": ["expo-font", "expo-router"]
+        "backgroundColor": "#ffffff"
+      }
+    }
   }
 }

@@ -10,38 +10,60 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const { width } = Dimensions.get("window");
+
+// Image imports
+const onboarding1 = require("../../assets/images/onboarding1.png");
+const onboarding2 = require("../../assets/images/onboarding2.png");
+const onboarding3 = require("../../assets/images/onboarding3.png");
+const onboarding4 = require("../../assets/images/onboarding4.png");
+const onboarding5 = require("../../assets/images/onboarding5.png");
+const onboarding6 = require("../../assets/images/onboarding6.png");
+
+const imageMap = {
+  "onboarding1.png": onboarding1,
+  "onboarding2.png": onboarding2,
+  "onboarding3.png": onboarding3,
+  "onboarding4.png": onboarding4,
+  "onboarding5.png": onboarding5,
+  "onboarding6.png": onboarding6,
+};
 
 export default function OnboardingScreen() {
   const router = useRouter();
   const [step, setStep] = useState(1);
 
   const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
-  const handleToSignup = () => router.replace("/signup");
+  const handleToSignup = async () => {
+  await AsyncStorage.setItem("has_onboarded", "true");
+  router.replace("/(auth)/signup");
+};
+
 
   // Slide Data
   const slides = {
     1: {
       title: "Your Campus.",
       description: "Made for OAU, connecting the entire campus community.",
-      image: require("../../assets/onboarding1.png"),
+      image: "onboarding1.png",
     },
     2: {
       title: "Your Food.",
       description: "Explore a wide range of meals from your favorite campus vendors.",
       // Using 4 images for the grid
       images: [
-        "https://picsum.photos/seed/food1/400/400",
-        "https://picsum.photos/seed/food2/400/400",
-        "https://picsum.photos/seed/food3/400/400",
-        "https://picsum.photos/seed/food4/400/400",
+        "onboarding2.png",
+        "onboarding3.png",
+        "onboarding4.png",
+        "onboarding5.png"
       ],
     },
     3: {
       title: "Your Dash.",
       description: "Fast delivery or flexible earnings.\nYour choice.",
-      image: "https://picsum.photos/seed/delivery/800/1000",
+      image: "onboarding6.png",
     },
   };
 
@@ -56,11 +78,11 @@ export default function OnboardingScreen() {
         {step === 2 ? (
           <View style={styles.gridContainer}>
             {currentSlide.images.map((img, index) => (
-              <Image key={index} source={{ uri: img }} style={styles.gridImage} />
+              <Image key={index} source={imageMap[img]} style={styles.gridImage} />
             ))}
           </View>
         ) : (
-          <Image source={{ uri: currentSlide.image }} style={styles.mainImage} />
+          <Image source={imageMap[currentSlide.image]} style={styles.mainImage} />
         )}
       </View>
 
