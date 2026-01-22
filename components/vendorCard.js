@@ -13,7 +13,7 @@ export default function VendorCard({ vendor }) {
       <View style={styles.imageWrapper}>
         <Image source={vendor.image} style={styles.image} />
         <TouchableOpacity style={styles.favoriteBtn} onPress={() => toggleFavorite(vendor.id)}>
-          <Ionicons name={vendor.isFavorite ? 'heart' : 'heart-outline'} size={20} color={vendor.isFavorite ? '#FF6B6B' : '#FFFFFF'} />
+          <Ionicons name={vendor.isFavorite ? 'heart' : 'heart-outline'} size={20} color={vendor.isFavorite ? '#00BFA5' : '#FFFFFF'} />
         </TouchableOpacity>
       </View>
       

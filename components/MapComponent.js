@@ -11,9 +11,18 @@ const MapComponent = ({ onLocationSelected, initialLocation }) => {
     longitudeDelta: 0.05,
   };
 
-  const [region, setRegion] = useState(initialLocation ? { ...initialLocation, latitudeDelta: 0.05, longitudeDelta: 0.05 } : defaultRegion);
+  const [region, setRegion] = useState(
+    initialLocation
+      ? { ...initialLocation, latitudeDelta: 0.05, longitudeDelta: 0.05 }
+      : defaultRegion,
+  );
   const [markerCoordinate, setMarkerCoordinate] = useState(
-    initialLocation ? { latitude: initialLocation.latitude, longitude: initialLocation.longitude } : { latitude: 7.5898, longitude: 4.5085 }
+    initialLocation
+      ? {
+          latitude: initialLocation.latitude,
+          longitude: initialLocation.longitude,
+        }
+      : { latitude: 7.5898, longitude: 4.5085 },
   );
   const [isLoading, setIsLoading] = useState(true);
 
@@ -63,10 +72,7 @@ const MapComponent = ({ onLocationSelected, initialLocation }) => {
         onRegionChangeComplete={setRegion}
         onPress={handleMapPress}
       >
-        <Marker
-          coordinate={markerCoordinate}
-          title="Selected Location"
-        />
+        <Marker coordinate={markerCoordinate} title="Selected Location" />
       </MapView>
     </View>
   );

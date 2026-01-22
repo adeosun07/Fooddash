@@ -56,10 +56,10 @@ export default function AddressDetailsScreen() {
     };
 
     console.log("Saving address:", addressData);
-    
+
     // Navigate to confirm screen with address data
     router.push({
-      pathname: '/location/confirm',
+      pathname: "/location/confirm",
       params: addressData,
     });
   };
@@ -75,17 +75,22 @@ export default function AddressDetailsScreen() {
         <View style={{ width: 24 }} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-        
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
         {/* 1. Map Component */}
         <View style={styles.formSection}>
           <Text style={styles.label}>Select Location on Map</Text>
-          <MapComponent onLocationSelected={handleLocationSelected} />
+          <View style={styles.mapContainer}>
+            <MapComponent onLocationSelected={handleLocationSelected} />
+          </View>
           {selectedLocation && (
             <View style={styles.coordinatesBox}>
               <Ionicons name="location" size={16} color="#4A90E2" />
               <Text style={styles.coordinatesText}>
-                {selectedLocation.latitude.toFixed(4)}, {selectedLocation.longitude.toFixed(4)}
+                {selectedLocation.latitude.toFixed(4)},{" "}
+                {selectedLocation.longitude.toFixed(4)}
               </Text>
             </View>
           )}
@@ -94,8 +99,8 @@ export default function AddressDetailsScreen() {
         {/* 2. Form Inputs */}
         <View style={styles.formSection}>
           <Text style={styles.label}>Apartment / Room / Block</Text>
-          <TextInput 
-            placeholder="Block C, room 14 or lecture hall 2" 
+          <TextInput
+            placeholder="Block C, room 14 or lecture hall 2"
             style={styles.input}
             placeholderTextColor="#A0A0A0"
             value={apartment}
@@ -103,8 +108,8 @@ export default function AddressDetailsScreen() {
           />
 
           <Text style={styles.label}>Note to the Dash rider</Text>
-          <TextInput 
-            placeholder="Meet me at the black gate or call me when you get here" 
+          <TextInput
+            placeholder="Meet me at the black gate or call me when you get here"
             style={[styles.input, styles.textArea]}
             multiline
             numberOfLines={3}
@@ -119,17 +124,22 @@ export default function AddressDetailsScreen() {
             {addressTypes.map((type) => {
               const isActive = addressType === type.id;
               return (
-                <TouchableOpacity 
+                <TouchableOpacity
                   key={type.id}
-                  style={[styles.typeButton, isActive && styles.activeTypeButton]}
+                  style={[
+                    styles.typeButton,
+                    isActive && styles.activeTypeButton,
+                  ]}
                   onPress={() => setAddressType(type.id)}
                 >
-                  <Ionicons 
-                    name={type.icon} 
-                    size={18} 
-                    color={isActive ? "#4A90E2" : "#707070"} 
+                  <Ionicons
+                    name={type.icon}
+                    size={18}
+                    color={isActive ? "#4A90E2" : "#707070"}
                   />
-                  <Text style={[styles.typeText, isActive && styles.activeTypeText]}>
+                  <Text
+                    style={[styles.typeText, isActive && styles.activeTypeText]}
+                  >
                     {type.id}
                   </Text>
                 </TouchableOpacity>
@@ -139,8 +149,8 @@ export default function AddressDetailsScreen() {
 
           {/* Conditional Input for "Other" label */}
           {addressType === "Other" && (
-            <TextInput 
-              placeholder="Address label (e.g., Church, Gym)" 
+            <TextInput
+              placeholder="Address label (e.g., Church, Gym)"
               style={[styles.input, { marginTop: 15 }]}
               value={otherLabel}
               onChangeText={setOtherLabel}
@@ -152,7 +162,6 @@ export default function AddressDetailsScreen() {
         <TouchableOpacity style={styles.saveButton} onPress={handleSaveAddress}>
           <Text style={styles.saveButtonText}>Save Address</Text>
         </TouchableOpacity>
-
       </ScrollView>
     </SafeAreaView>
   );
@@ -180,7 +189,18 @@ const styles = StyleSheet.create({
   },
   formSection: {
     paddingHorizontal: 20,
-    marginTop: 25,
+    /*     borderWidth: 1,
+    borderColor: "#E0E0E0",
+    borderRadius: 12, */
+    marginBottom: 20,
+  },
+  mapContainer: {
+    width: "100%",
+    height: 250,
+    borderRadius: 12,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "#E0E0E0",
   },
   coordinatesBox: {
     flexDirection: "row",

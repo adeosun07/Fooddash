@@ -23,7 +23,7 @@ export default function Index() {
   }
 
   if (!hasOnboarded) {
-    return <Redirect href="/onboarding/index" />;
+    return <Redirect href="/onboarding" />;
   }
 
   if (!isLoggedIn) {

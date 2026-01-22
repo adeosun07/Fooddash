@@ -77,7 +77,7 @@ export default function LocationPermissionScreen() {
 
   const handleManualEntry = () => {
     // Navigate to a manual address search screen
-    router.push("/manual");
+    router.push("/location/manual");
     console.log("Navigating to manual entry...");
   };
 

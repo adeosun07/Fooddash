@@ -18,14 +18,14 @@ export const VendorProvider = ({ children }) => {
       openingTime: '9:00am',
       menu: {
         meals: [
-          { id: 'm1', name: 'Jollof Rice', description: 'Hot Nigerian jollof', price: 400, image: '' },
-          { id: 'm2', name: 'Fried Rice', description: 'Delicious fried rice', price: 450, image: '' },
+          { id: 'm1', name: 'Jollof Rice', description: 'Hot Nigerian jollof', price: 400, image: require('../assets/images/jollof.jpg') },
+          { id: 'm2', name: 'Fried Rice', description: 'Delicious fried rice', price: 450, image: require('../assets/images/fried.jpg') },
         ],
         sides: [
-          { id: 's1', name: 'Plantain', description: 'Fried plantain', price: 150, image: '' },
+          { id: 's1', name: 'Turkey', description: '3pcs', price: 4500, image: require('../assets/images/turkey.jpg') },
         ],
         'special menus': [
-          { id: 'sp1', name: 'Family Feast', description: 'Large portion for 4', price: 5000, image: '' }
+          { id: 'sp1', name: 'Yam and egg sauce', description: 'A plate yam and egg sauce', price: 3500, image: require('../assets/images/yam.png') }
         ]
       },
     },
@@ -38,7 +38,7 @@ export const VendorProvider = ({ children }) => {
       time: '25-30min',
       status: 'Open',
       image: require('../assets/images/orente.png'),
-      isFavorite: true,
+      isFavorite: false,
       tags: ['Grill', 'Beef', 'Chicken'],
       openingTime: '10:00am',
       menu: {
