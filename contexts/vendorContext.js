@@ -36,7 +36,7 @@ export const VendorProvider = ({ children }) => {
       rating: 4.0,
       deliveryFee: 'N500',
       time: '25-30min',
-      status: 'Open',
+      status: 'Closed',
       image: require('../assets/images/orente.png'),
       isFavorite: false,
       tags: ['Grill', 'Beef', 'Chicken'],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { OrderContext } from "../contexts/orderContext";
 
 export default function FoodCustomizationModal({
   visible,
@@ -17,21 +18,51 @@ export default function FoodCustomizationModal({
   onClose,
 }) {
   if (!item) return null;
+  const { addItem } = useContext(OrderContext);
   const [quantity, setQuantity] = useState(1);
   const [sideQuantities, setSideQuantities] = useState({});
 
   const incrementSide = (sideId) => {
     setSideQuantities((prev) => ({
       ...prev,
-      [sideId]: (prev[sideId] || 0) + 1,
+      [sideId]: (prev[sideId] || 0) === 0 ? 1 : (prev[sideId] || 1) * 2,
     }));
   };
 
   const decrementSide = (sideId) => {
-    setSideQuantities((prev) => ({
-      ...prev,
-      [sideId]: Math.max(0, (prev[sideId] || 0) - 1),
-    }));
+    setSideQuantities((prev) => {
+      const current = prev[sideId] || 0;
+      if (current === 0 || current === 1) {
+        return { ...prev, [sideId]: 0 };
+      }
+      return { ...prev, [sideId]: Math.floor(current / 2) };
+    });
+  };
+
+  const calculateTotalPrice = () => {
+    let total = item.price * quantity;
+    Object.keys(sideQuantities).forEach((sideId) => {
+      if (sideQuantities[sideId] > 0) {
+        const side = sides.find(s => s.id === sideId);
+        if (side) {
+          total += side.price * sideQuantities[sideId];
+        }
+      }
+    });
+    return total;
+  };
+
+  const handleAddToOrder = () => {
+    addItem({ ...item, quantity });
+    Object.keys(sideQuantities).forEach((sideId) => {
+      if (sideQuantities[sideId] > 0) {
+        const side = sides.find(s => s.id === sideId);
+        if (side) {
+          addItem({ ...side, quantity: sideQuantities[sideId] });
+        }
+      }
+    });
+    onClose();
   };
 
   return (
@@ -115,20 +146,20 @@ export default function FoodCustomizationModal({
                   if (quantity === 1) {
                     onClose();
                   } else {
-                    setQuantity(quantity - 1);
+                    setQuantity(quantity === 2 ? 1 : Math.floor(quantity / 2));
                   }
                 }}
               >
                 <Ionicons name="remove" size={20} color="#4A90E2" />
               </TouchableOpacity>
               <Text style={styles.qtyText}>{quantity}</Text>
-              <TouchableOpacity onPress={() => setQuantity(quantity + 1)}>
+              <TouchableOpacity onPress={() => setQuantity(quantity * 2)}>
                 <Ionicons name="add" size={20} color="#4A90E2" />
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.addBtn}>
+            <TouchableOpacity style={styles.addBtn} onPress={handleAddToOrder}>
               <Text style={styles.addBtnText}>Add to order</Text>
-              <Text style={styles.addBtnText}>₦{item.price * quantity}</Text>
+              <Text style={styles.addBtnText}>₦{calculateTotalPrice()}</Text>
             </TouchableOpacity>
           </View>
         </View>

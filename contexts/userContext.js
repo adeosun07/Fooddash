@@ -3,6 +3,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const UserContext = createContext();
 
+export { UserContext };
+
 export const UserProvider = ({ children }) => {
   const [savedAddresses, setSavedAddresses] = useState([]);
   const [currentAddress, setCurrentAddress] = useState(null);

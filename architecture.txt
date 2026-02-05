@@ -1,0 +1,74 @@
+Customer Flow
+
+signup: I will be sending name, phone, email, and password
+
+SignIn: will be sending phone and password
+
+Forgot Password: backend sends code to user phone number, along with the post request i will send the phone number. For confirmation, i will send the inputed code. Then for resetting password, i will send password.
+
+Address: I will send address details
+For vendors i will need: {
+    image,
+    isFavorite,
+    name,
+    logo,
+    estimated time for delivery,
+    motto,
+    rating,
+    category,
+    filter (recommended, lowest price, top rated),
+    status (open or closed),
+    time of opening,
+    services (Home cooking, Rice, Chicken e.t.c)
+    menu category (meals, sides, special menus)
+}
+foods by menu{
+    meals {
+        name,
+        description,
+        price,
+        image
+    }
+    sides {
+        name,
+        description,
+        price,
+        image
+    }
+    special menu {
+        name,
+        description,
+        price,
+        image
+    }
+}
+to make payment i will send {
+    address,
+    note for rider,
+    payment type (transfer),
+    price
+}
+
+After the payment, user will click "I have sent the money" and i will need a response that payment was okay.
+
+Order can be cancelled after vendor accept Order
+
+In delivery screen i will need{
+    status (active, completed)
+    delivery_status (vendor accepted, preparing, pickup, arrived, cacelled), 
+    vendor location,
+    rider's location,
+    delivery address,
+    items and amount,
+    rider's name,
+    rider,s transport color,
+    rider's plate number,
+    rider's number,
+    rider's whatsapp 
+}
+In orders screen i will need order history{
+    vendor,
+    date (jan 20),
+    price,
+    items and amount
+}

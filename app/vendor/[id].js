@@ -120,7 +120,7 @@ export default function VendorScreen() {
 
       {/* Floating Check Order Button */}
       {(selectedItem || orders.length > 0) && (
-        <TouchableOpacity style={styles.checkOrderBtn}>
+        <TouchableOpacity style={styles.checkOrderBtn} onPress={() => router.push({ pathname: '/(stack)/order', params: { vendorId: id } })}>
           <Text style={styles.checkOrderLabel}>Check Order</Text>
           <Text style={styles.checkOrderText}>
             {selectedItem

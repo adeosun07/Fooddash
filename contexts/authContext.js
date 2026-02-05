@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SplashScreen from "../app/splashScreen";
 
 const AuthContext = createContext(null);
 
